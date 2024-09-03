@@ -1,0 +1,34 @@
+submitBtn = (Button) findViewById(R.id.submitBtn);
+    submitBtn.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View view) {
+            try {
+                 numCheck = Integer.parseInt(firstEditText.getText().toString());
+            }
+            catch(Exception e) {
+            }
+
+            if (num == numCheck || chance == iterate) {
+                if (chance == iterate) {
+                    str = "***You lost***";
+                    submitBtn.setEnabled(false);
+                } else
+                    str = "***Bingo***";
+                Intent i = new Intent("com.example.SecondActivity");
+                i.putExtra("key1", str);
+                startActivity(i);
+            }
+
+
+            if (numCheck <= 100 && numCheck >= 0) {
+                iterate++;
+                if (num < numCheck) {
+                    tv4.setText("Guess is larger.");
+                }
+                if (num > numCheck) {
+                    tv4.setText("Guess is smaller.");
+                }
+            } else {
+                tv4.setText("Invalid Option");
+            }
+        }
+    });
